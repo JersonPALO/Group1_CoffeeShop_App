@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import { COFFEE_DATA } from '../coffeeData';
+import { COFFEE_DATA } from '../data/coffeeData';
 
 export default function HomeScreen({ navigation, favorites, toggleFav }) {
   return (
