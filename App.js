@@ -8,7 +8,6 @@ import DetailsScreen from './src/screens/DetailsScreen';
 import FavoritesScreen from './src/screens/FavoritesScreen';
 import CartScreen from './src/screens/CartScreen';
 
-// ⚠️ THIS LINE MUST BE HERE OUTSIDE THE APP FUNCTION ⚠️
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -24,45 +23,24 @@ export default function App() {
 
   // Save/Remove favorites
   const toggleFav = (id) => {
-    const updated = favorites.includes(id) 
-      ? favorites.filter((f) => f !== id) 
-      : [...favorites, id];
+    const updated = favorites.includes(id) ? favorites.filter((f) => f !== id) : [...favorites, id];
     setFavorites(updated);
     AsyncStorage.setItem('@favs', JSON.stringify(updated));
   };
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: '#4A2C2A' },
-          headerTintColor: '#FFFFFF',
-          headerTitleStyle: { fontWeight: 'bold' },
-          contentStyle: { backgroundColor: '#F9F6F0' },
-        }}
-      >
+      <Stack.Navigator>
         <Stack.Screen name="Menu">
-          {(props) => (
-            <HomeScreen {...props} favorites={favorites} toggleFav={toggleFav} />
-          )}
+          {(props) => <HomeScreen {...props} favorites={favorites} toggleFav={toggleFav} />}
         </Stack.Screen>
-
-        <Stack.Screen name="Details" options={{ title: 'Customize Drink' }}>
-          {(props) => (
-            <DetailsScreen 
-              {...props} 
-              addToCart={(item) => setCart([...cart, item])} 
-            />
-          )}
+        <Stack.Screen name="Details">
+          {(props) => <DetailsScreen {...props} addToCart={(item) => setCart([...cart, item])} />}
         </Stack.Screen>
-
-        <Stack.Screen name="Favorites" options={{ title: 'Saved Favorites' }}>
-          {(props) => (
-            <FavoritesScreen {...props} favorites={favorites} toggleFav={toggleFav} />
-          )}
+        <Stack.Screen name="Favorites">
+          {(props) => <FavoritesScreen {...props} favorites={favorites} toggleFav={toggleFav} />}
         </Stack.Screen>
-
-        <Stack.Screen name="Cart" options={{ title: 'Your Order' }}>
+        <Stack.Screen name="Cart">
           {(props) => (
             <CartScreen
               {...props}
