@@ -36,19 +36,54 @@ export default function DetailsScreen({ route, navigation, addToCart }) {
       </View>
 
       <TouchableOpacity style={styles.addBtn} onPress={handleAdd}>
-        <Text style={{ color: '#fff', fontWeight: 'bold' }}>Add to Cart - ${item.price.toFixed(2)}</Text>
+        <Text style={{ color: '#fff', fontWeight: 'bold' }}>Add to Cart - ₱{item.price.toFixed(2)}</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  title: { fontSize: 22, fontWeight: 'bold' },
-  desc: { marginVertical: 10, color: '#666' },
-  label: { fontWeight: 'bold', marginTop: 15 },
-  row: { flexDirection: 'row', marginTop: 5 },
-  opt: { padding: 10, borderWidth: 1, borderColor: '#ccc', marginRight: 10, borderRadius: 5 },
-  sel: { backgroundColor: '#ddd' },
-  addBtn: { backgroundColor: '#6f4e37', padding: 15, borderRadius: 5, alignItems: 'center', marginTop: 30 },
+  container: { 
+    flex: 1, 
+    padding: 20 
+  },
+
+  title: { 
+    fontSize: 22, 
+    fontWeight: 'bold' 
+  },
+
+  desc: { 
+    marginVertical: 10, 
+    color: '#666' 
+  },
+
+  label: { 
+    fontWeight: 'bold',
+    marginTop: 15 
+  },
+
+  row: { 
+    flexDirection: 'row', 
+    marginTop: 5 
+  },
+
+  opt: { 
+    padding: 10, 
+    borderWidth: 1, 
+    borderColor: '#ccc', 
+    marginRight: 10, 
+    borderRadius: 5 },
+
+  sel: { 
+    backgroundColor: '#ddd' 
+  },
+
+  addBtn: { 
+    backgroundColor: '#6f4e37', 
+    padding: 15, 
+    borderRadius: 5, 
+    alignItems: 'center', 
+    marginTop: 30 
+  },
 });
