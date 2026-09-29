@@ -72,9 +72,11 @@ const styles = StyleSheet.create({
   opt: { 
     padding: 10, 
     borderWidth: 1, 
-    borderColor: '#ccc', 
+    borderColor: '#837b7b', 
     marginRight: 10, 
-    borderRadius: 5 },
+    borderRadius: 5,
+    backgroundColor: '#ffffff' 
+  },
 
   sel: { 
     backgroundColor: '#ddd' 
