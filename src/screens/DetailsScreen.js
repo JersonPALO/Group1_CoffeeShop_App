@@ -45,7 +45,8 @@ export default function DetailsScreen({ route, navigation, addToCart }) {
 const styles = StyleSheet.create({
   container: { 
     flex: 1, 
-    padding: 20 
+    padding: 20,
+    backgroundColor: "#F8F4E3", 
   },
 
   title: { 
