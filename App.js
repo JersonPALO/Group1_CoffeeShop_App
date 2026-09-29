@@ -1,55 +1,106 @@
-import React, { useState, useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState, useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import HomeScreen from './src/screens/HomeScreen';
-import DetailsScreen from './src/screens/DetailsScreen';
-import FavoritesScreen from './src/screens/FavoritesScreen';
-import CartScreen from './src/screens/CartScreen';
+import HomeScreen from "./src/screens/HomeScreen";
+import DetailsScreen from "./src/screens/DetailsScreen";
+import FavoritesScreen from "./src/screens/FavoritesScreen";
+import CartScreen from "./src/screens/CartScreen";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
 
-  // Load saved favorites on startup
+  // Load saved favorites when the app starts
   useEffect(() => {
-    AsyncStorage.getItem('@favs').then((data) => {
-      if (data) setFavorites(JSON.parse(data));
+    AsyncStorage.getItem("@favs").then((data) => {
+      if (data) {
+        setFavorites(JSON.parse(data));
+      }
     });
   }, []);
 
-  // Save/Remove favorites
+  // Add or Remove Favorites
   const toggleFav = (id) => {
-    const updated = favorites.includes(id) ? favorites.filter((f) => f !== id) : [...favorites, id];
+    let updated;
+
+    if (favorites.includes(id)) {
+      updated = favorites.filter((item) => item !== id);
+    } else {
+      updated = [...favorites, id];
+    }
+
     setFavorites(updated);
-    AsyncStorage.setItem('@favs', JSON.stringify(updated));
+    AsyncStorage.setItem("@favs", JSON.stringify(updated));
+  };
+
+  // Add coffee to cart
+  const addToCart = (item) => {
+    setCart([...cart, item]);
+  };
+
+  // Remove coffee from cart
+  const removeFromCart = (cartId) => {
+    const updatedCart = cart.filter(
+      (item) => item.cartId !== cartId
+    );
+
+    setCart(updatedCart);
+  };
+
+  // Clear all items in cart
+  const clearCart = () => {
+    setCart([]);
   };
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
         <Stack.Screen name="Menu">
-          {(props) => <HomeScreen {...props} favorites={favorites} toggleFav={toggleFav} />}
+          {(props) => (
+            <HomeScreen
+              {...props}
+              favorites={favorites}
+              toggleFav={toggleFav}
+            />
+          )}
         </Stack.Screen>
+
         <Stack.Screen name="Details">
-          {(props) => <DetailsScreen {...props} addToCart={(item) => setCart([...cart, item])} />}
+          {(props) => (
+            <DetailsScreen
+              {...props}
+              addToCart={addToCart}
+            />
+          )}
         </Stack.Screen>
+
         <Stack.Screen name="Favorites">
-          {(props) => <FavoritesScreen {...props} favorites={favorites} toggleFav={toggleFav} />}
+          {(props) => (
+            <FavoritesScreen
+              {...props}
+              favorites={favorites}
+              toggleFav={toggleFav}
+            />
+          )}
         </Stack.Screen>
+
         <Stack.Screen name="Cart">
           {(props) => (
             <CartScreen
               {...props}
               cart={cart}
-              removeFromCart={(id) => setCart(cart.filter((c) => c.cartId !== id))}
-              clearCart={() => setCart([])}
+              removeFromCart={removeFromCart}
+              clearCart={clearCart}
             />
           )}
         </Stack.Screen>
+
       </Stack.Navigator>
     </NavigationContainer>
   );

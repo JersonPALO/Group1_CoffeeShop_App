@@ -1,14 +1,13 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { COFFEE_DATA } from '../data/coffeeData';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function FavoritesScreen({ favorites, toggleFav }) {
   const favItems = COFFEE_DATA.filter((item) => favorites.includes(item.id));
 
   if (favItems.length === 0) {
     return (
-      <SafeAreaView style={styles.emptyContainer}>
+      <View style={styles.emptyContainer}>
         <Text style={styles.emptyTitle}>
           No Favorites Yet
         </Text>
@@ -16,12 +15,12 @@ export default function FavoritesScreen({ favorites, toggleFav }) {
         <Text style={styles.emptyText}>
           Tap the star icon on a coffee to add it here.
         </Text>
-      </SafeAreaView>
+      </View>
     );
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={favItems}
         keyExtractor={(item) => item.id}
@@ -34,7 +33,7 @@ export default function FavoritesScreen({ favorites, toggleFav }) {
           </View>
         )}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 

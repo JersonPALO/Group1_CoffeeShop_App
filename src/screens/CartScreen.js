@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function CartScreen({ cart, removeFromCart, clearCart }) {
   const total = cart.reduce((sum, item) => sum + item.price, 0);
@@ -20,7 +19,7 @@ export default function CartScreen({ cart, removeFromCart, clearCart }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={cart}
         keyExtractor={(item) => item.cartId}
@@ -51,7 +50,7 @@ export default function CartScreen({ cart, removeFromCart, clearCart }) {
         }}>
         <Text style={{ color: '#fff', fontWeight: 'bold' }}>Checkout</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 }
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function DetailsScreen({ route, navigation, addToCart }) {
   const { item } = route.params;
@@ -14,7 +13,7 @@ export default function DetailsScreen({ route, navigation, addToCart }) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.title}>{item.name}</Text>
       <Text style={styles.desc}>{item.desc}</Text>
 
@@ -39,7 +38,7 @@ export default function DetailsScreen({ route, navigation, addToCart }) {
       <TouchableOpacity style={styles.addBtn} onPress={handleAdd}>
         <Text style={{ color: '#fff', fontWeight: 'bold' }}>Add to Cart - ₱{item.price.toFixed(2)}</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 }
 
