@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function CartScreen({ cart, removeFromCart, clearCart }) {
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   if (cart.length === 0) {
     return (
-      <View style={styles.emptyContainer}>
+      <SafeAreaView style={styles.emptyContainer}>
         <Text style={styles.emptyTitle}>
           Your Cart is Empty
         </Text>
@@ -14,12 +15,12 @@ export default function CartScreen({ cart, removeFromCart, clearCart }) {
         <Text style={styles.emptyText}>
           Add a coffee to your cart to continue.
         </Text>
-      </View>
+      </SafeAreaView>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={cart}
         keyExtractor={(item) => item.cartId}
@@ -50,7 +51,7 @@ export default function CartScreen({ cart, removeFromCart, clearCart }) {
         }}>
         <Text style={{ color: '#fff', fontWeight: 'bold' }}>Checkout</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 

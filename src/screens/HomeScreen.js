@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { COFFEE_DATA } from '../data/coffeeData';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen({ navigation, favorites, toggleFav }) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Top Navigation Buttons */}
       <View style={styles.row}>
         <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Favorites')}>
@@ -38,7 +39,7 @@ export default function HomeScreen({ navigation, favorites, toggleFav }) {
           </TouchableOpacity>
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
