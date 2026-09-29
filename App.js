@@ -3,10 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import HomeScreen from './src/screens/HomeScreen';
-import DetailsScreen from './src/screens/DetailsScreen';
-import FavoritesScreen from './src/screens/FavoritesScreen';
-import CartScreen from './src/screens/CartScreen';
+import HomeScreen from './screens/HomeScreen';
+import DetailsScreen from './screens/DetailsScreen';
+import FavoritesScreen from './screens/FavoritesScreen';
+import CartScreen from './screens/CartScreen';
 
 const Stack = createNativeStackNavigator();
 
