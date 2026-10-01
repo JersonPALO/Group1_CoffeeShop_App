@@ -1,62 +1,78 @@
 import { StyleSheet } from "react-native";
 
-const GlobalStyles = StyleSheet.create({
-  // Containers
+
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F6F1EB",
     padding: 15,
+    backgroundColor: "#F8F4E3",
   },
 
-  centerContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#F6F1EB",
+  cartcontainer: { 
+    flex: 1, 
+    padding: 15,
+    backgroundColor: "#F8F4E3",
+    paddingBottom: 50,
   },
 
-  // Top Buttons
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 15,
+  row: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    marginBottom: 15 
   },
 
-  button: {
+  detailRow: { 
+    flexDirection: 'row', 
+    marginTop: 5 
+  },
+
+  btn: {
     backgroundColor: "#6F4E37",
-    width: "48%",
     paddingVertical: 12,
     borderRadius: 10,
+    width: "48%",
     alignItems: "center",
-    elevation: 3,
   },
-
-  greenButton: {
-    backgroundColor: "green",
-  },
-
-  buttonText: {
-    color: "#fff",
+  
+  btnText: {
+    color: "#FFFFFF",
     fontWeight: "bold",
     fontSize: 15,
   },
+  
+  cartbtn: { 
+    backgroundColor: 'green', 
+    padding: 15, 
+    borderRadius: 5, 
+    alignItems: 'center' 
+  },
 
-  // Cards
+
   card: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#fff",
     padding: 15,
+    backgroundColor: "#FFFFFF",
     marginBottom: 12,
     borderRadius: 12,
     elevation: 3,
+    },
+
+  title: {
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+
+
+  detailtitle: { 
+    fontSize: 22, 
+    fontWeight: 'bold' 
   },
 
   info: {
-    flexDirection: "row",
-    alignItems: "center",
+  flexDirection: "row",
+  alignItems: "center",
   },
 
   image: {
@@ -70,57 +86,64 @@ const GlobalStyles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#3E2723",
+  desc: { 
+    marginVertical: 10, 
+    color: '#666' 
   },
 
-  description: {
-    color: "#666",
-    marginVertical: 10,
+  label: { 
+    fontWeight: 'bold',
+    marginTop: 15 
   },
 
-  // Labels
-  label: {
-    marginTop: 15,
-    fontWeight: "bold",
-    color: "#3E2723",
-  },
-
-  optionRow: {
-    flexDirection: "row",
-    marginTop: 5,
-  },
-
-  option: {
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#999",
+  opt: { 
+    padding: 10, 
+    borderWidth: 1, 
+    borderColor: '#837b7b', 
+    marginRight: 10, 
     borderRadius: 5,
-    marginRight: 10,
-    backgroundColor: "#fff",
+    backgroundColor: '#ffffff' 
   },
 
-  selectedOption: {
-    backgroundColor: "#ddd",
+  sel: { 
+    backgroundColor: '#ddd' 
   },
 
-  // Main Action Button
-  actionButton: {
-    backgroundColor: "#6F4E37",
-    padding: 15,
-    borderRadius: 8,
+  addBtn: { 
+    backgroundColor: '#6f4e37', 
+    padding: 15, 
+    borderRadius: 5, 
+    alignItems: 'center', 
+    marginTop: 30 
+  },
+
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
-    marginTop: 20,
+    padding: 20,
   },
 
-  actionButtonText: {
-    color: "#fff",
+  emptyTitle: {
+    fontSize: 22,
     fontWeight: "bold",
+    color: "#3E2723",
   },
 
-  // Remove Button
+  emptyText: {
+    marginTop: 10,
+    fontSize: 15,
+    color: "gray",
+    textAlign: "center",
+  },
+  
+  total: { 
+    fontSize: 18, 
+    fontWeight: 'bold', 
+    textAlign: 'right', 
+    marginVertical: 10 
+  },
+
   removeButton: {
     backgroundColor: "#E53935",
     paddingVertical: 6,
@@ -131,30 +154,6 @@ const GlobalStyles = StyleSheet.create({
   removeText: {
     color: "#fff",
     fontWeight: "bold",
-  },
-
-  // Total
-  total: {
-    fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "right",
-    marginVertical: 10,
-    color: "#3E2723",
-  },
-
-  // Empty Screens
-  emptyTitle: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#3E2723",
-  },
-
-  emptyText: {
-    marginTop: 10,
-    color: "gray",
-    textAlign: "center",
-    fontSize: 15,
+    fontSize: 14,
   },
 });
-
-export default GlobalStyles;

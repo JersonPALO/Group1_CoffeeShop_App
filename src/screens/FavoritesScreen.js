@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { COFFEE_DATA } from '../data/coffeeData';
-import { styles } from "../styles/GlobalStyles";
+import { styles } from '../styles/GlobalStyles';
 
 export default function FavoritesScreen({ favorites, toggleFav }) {
   const favItems = COFFEE_DATA.filter((item) => favorites.includes(item.id));
 
   if (favItems.length === 0) {
     return (
-      <View style={styles.centerContainer}>
+      <View style={styles.emptyContainer}>
         <Text style={styles.emptyTitle}>
           No Favorites Yet
         </Text>

@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { COFFEE_DATA } from '../data/coffeeData';
-import { styles } from "../styles/GlobalStyles";
+import { styles } from '../styles/GlobalStyles';
 
 export default function HomeScreen({ navigation, favorites, toggleFav }) {
   return (
@@ -11,7 +11,7 @@ export default function HomeScreen({ navigation, favorites, toggleFav }) {
         <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Favorites')}>
           <Text style={styles.btnText}>Favorites ({favorites.length})</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.greenButton]} onPress={() => navigation.navigate('Cart')}>
+        <TouchableOpacity style={[styles.btn, { backgroundColor: 'green' }]} onPress={() => navigation.navigate('Cart')}>
           <Text style={styles.btnText}>View Cart</Text>
         </TouchableOpacity>
       </View>
