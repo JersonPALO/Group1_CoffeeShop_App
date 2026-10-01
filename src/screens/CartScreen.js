@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { styles } from "../styles/GlobalStyles";
 
 export default function CartScreen({ cart, removeFromCart, clearCart }) {
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   if (cart.length === 0) {
     return (
-      <SafeAreaView style={styles.emptyContainer}>
+      <SafeAreaView style={styles.centerContainer}>
         <Text style={styles.emptyTitle}>
           Your Cart is Empty
         </Text>
@@ -41,7 +42,7 @@ export default function CartScreen({ cart, removeFromCart, clearCart }) {
         )}
       />
       <Text style={styles.total}>Total: ₱{total.toFixed(2)}</Text>
-      <TouchableOpacity style={styles.btn} onPress={() => { 
+      <TouchableOpacity style={styles.actionButton} onPress={() => { 
         Alert.alert(
           "Order Successful",
       `Thank you for your order!`

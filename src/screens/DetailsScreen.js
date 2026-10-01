@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { styles } from "../styles/GlobalStyles";
 
 export default function DetailsScreen({ route, navigation, addToCart }) {
   const { item } = route.params;
@@ -18,18 +19,18 @@ export default function DetailsScreen({ route, navigation, addToCart }) {
       <Text style={styles.desc}>{item.desc}</Text>
 
       <Text style={styles.label}>Size:</Text>
-      <View style={styles.row}>
+      <View style={styles.OptionRow}>
         {['Small', 'Medium', 'Large'].map((s) => (
-          <TouchableOpacity key={s} style={[styles.opt, size === s && styles.sel]} onPress={() => setSize(s)}>
+          <TouchableOpacity key={s} style={[styles.option, size === s && styles.selectedOption]} onPress={() => setSize(s)}>
             <Text>{s}</Text>
           </TouchableOpacity>
         ))}
       </View>
 
       <Text style={styles.label}>Sugar:</Text>
-      <View style={styles.row}>
+      <View style={styles.OptionRow}>
         {['0%', '50%', '100%'].map((l) => (
-          <TouchableOpacity key={l} style={[styles.opt, sugar === l && styles.sel]} onPress={() => setSugar(l)}>
+          <TouchableOpacity key={l} style={[styles.option, sugar === l && styles.selectedOption]} onPress={() => setSugar(l)}>
             <Text>{l}</Text>
           </TouchableOpacity>
         ))}
@@ -41,52 +42,3 @@ export default function DetailsScreen({ route, navigation, addToCart }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    padding: 20,
-    backgroundColor: "#F8F4E3", 
-  },
-
-  title: { 
-    fontSize: 22, 
-    fontWeight: 'bold' 
-  },
-
-  desc: { 
-    marginVertical: 10, 
-    color: '#666' 
-  },
-
-  label: { 
-    fontWeight: 'bold',
-    marginTop: 15 
-  },
-
-  row: { 
-    flexDirection: 'row', 
-    marginTop: 5 
-  },
-
-  opt: { 
-    padding: 10, 
-    borderWidth: 1, 
-    borderColor: '#837b7b', 
-    marginRight: 10, 
-    borderRadius: 5,
-    backgroundColor: '#ffffff' 
-  },
-
-  sel: { 
-    backgroundColor: '#ddd' 
-  },
-
-  addBtn: { 
-    backgroundColor: '#6f4e37', 
-    padding: 15, 
-    borderRadius: 5, 
-    alignItems: 'center', 
-    marginTop: 30 
-  },
-});
