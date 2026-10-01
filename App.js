@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,15 +14,6 @@ export default function App() {
 
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
-
-  // Load saved favorites when the app starts
-  useEffect(() => {
-    AsyncStorage.getItem("@favs").then((data) => {
-      if (data) {
-        setFavorites(JSON.parse(data));
-      }
-    });
-  }, []);
 
   // Add or Remove Favorites
   const toggleFav = (id) => {
