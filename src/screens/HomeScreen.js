@@ -10,6 +10,7 @@ export default function HomeScreen({ navigation, favorites, toggleFav }) {
         <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Favorites')}>
           <Text style={styles.btnText}>Favorites ({favorites.length})</Text>
         </TouchableOpacity>
+        
         <TouchableOpacity style={[styles.btn, { backgroundColor: 'green' }]} onPress={() => navigation.navigate('Cart')}>
           <Text style={styles.btnText}>View Cart</Text>
         </TouchableOpacity>
