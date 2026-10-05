@@ -72,7 +72,6 @@ export default function App() {
         <Stack.Screen name="Favorites">
           {(props) => (
             <FavoritesScreen
-              {...props}
               favorites={favorites}
               toggleFav={toggleFav}
             />
@@ -82,7 +81,6 @@ export default function App() {
         <Stack.Screen name="Cart">
           {(props) => (
             <CartScreen
-              {...props}
               cart={cart}
               removeFromCart={removeFromCart}
               clearCart={clearCart}
