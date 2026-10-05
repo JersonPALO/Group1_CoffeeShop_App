@@ -1,5 +1,4 @@
-import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { styles } from '../styles/GlobalStyles';
 
 export default function CartScreen({ cart, removeFromCart, clearCart }) {

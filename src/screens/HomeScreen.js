@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { COFFEE_DATA } from '../data/coffeeData';
 import { styles } from '../styles/GlobalStyles';
