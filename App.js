@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import HomeScreen from "./src/screens/HomeScreen";
 import DetailsScreen from "./src/screens/DetailsScreen";
@@ -26,7 +25,6 @@ export default function App() {
     }
 
     setFavorites(updated);
-    AsyncStorage.setItem("@favs", JSON.stringify(updated));
   };
 
   // Add coffee to cart
