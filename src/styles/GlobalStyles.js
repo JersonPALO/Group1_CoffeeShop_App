@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   row: { 
     flexDirection: 'row', 
     justifyContent: 'space-between', 
-    marginBottom: 15 
+    marginBottom: 15,
   },
 
   detailRow: { 
@@ -71,19 +71,15 @@ export const styles = StyleSheet.create({
   },
 
   info: {
-  flexDirection: "row",
-  alignItems: "center",
+    flexDirection: "row",
+    alignItems: "center",
   },
 
   image: {
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 100,
     borderRadius: 8,
     marginRight: 12,
-  },
-
-  textContainer: {
-    justifyContent: "center",
   },
 
   desc: { 

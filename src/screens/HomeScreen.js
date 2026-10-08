@@ -28,7 +28,7 @@ export default function HomeScreen({ navigation, favorites, toggleFav }) {
                   style={styles.image}
                 />
 
-                <View style={styles.textContainer}>
+                <View>
                   <Text style={styles.title}>{item.name}</Text>
                   <Text>₱{item.price.toFixed(2)}</Text>
                 </View>
