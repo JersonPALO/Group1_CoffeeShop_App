@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
+import { CoffeeContext } from '../context/CoffeeContext';
 import { styles } from '../styles/GlobalStyles';
 
-export default function CartScreen({ cart, removeFromCart, clearCart }) {
+export default function CartScreen() {
+  const { cart, removeFromCart, clearCart } = useContext(CoffeeContext);
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   if (cart.length === 0) {
