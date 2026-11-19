@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { CoffeeContext } from '../context/CoffeeContext';
 import { styles } from '../styles/GlobalStyles';
 
-export default function DetailsScreen({ route, navigation, addToCart }) {
+export default function DetailsScreen({ route, navigation }) {
+  const { addToCart } = useContext(CoffeeContext);
   const { item } = route.params;
   const [size, setSize] = useState('Medium');
   const [sugar, setSugar] = useState('100%');
