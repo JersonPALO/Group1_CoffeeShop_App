@@ -223,6 +223,13 @@ export const authStyles = StyleSheet.create({
     color: "gray",
   },
 
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#3E2723",
+    marginBottom: 10,
+  },
+
   loginBtn: {
     backgroundColor: "#6F4E37",
     padding: 15,
