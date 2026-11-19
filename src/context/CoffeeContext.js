@@ -8,10 +8,12 @@ export const CoffeeContext = createContext();
 const FAVORITES_KEY = 'favorites';
 const CART_KEY = 'cart';
 const USER_KEY = 'user';
+const ORDERS_KEY = 'orders';
 
 export function CoffeeProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
+  const [orders, setOrders] = useState([]); // order history
   const [user, setUser] = useState(null); // null means logged out
   const [isLoading, setIsLoading] = useState(true); // Lesson 7: loading state
   const [error, setError] = useState(null); // Lesson 7: error state
@@ -30,6 +32,11 @@ export function CoffeeProvider({ children }) {
           setCart(JSON.parse(savedCart)); // string -> array
         }
 
+        const savedOrders = await AsyncStorage.getItem(ORDERS_KEY);
+        if (savedOrders !== null) {
+          setOrders(JSON.parse(savedOrders)); // string -> array
+        }
+
         const savedUser = await AsyncStorage.getItem(USER_KEY);
         if (savedUser !== null) {
           setUser(JSON.parse(savedUser)); // string -> object
@@ -44,6 +51,18 @@ export function CoffeeProvider({ children }) {
 
     loadData();
   }, []);
+
+  // CREATE: add a finished order to the history (newest first) and save it
+  const addOrder = async (order) => {
+    const updatedOrders = [order, ...orders];
+    setOrders(updatedOrders);
+
+    try {
+      await AsyncStorage.setItem(ORDERS_KEY, JSON.stringify(updatedOrders)); // array -> string
+    } catch (err) {
+      console.log('Failed to save orders', err);
+    }
+  };
 
   // Log in with the demo account. Returns true if the details match.
   const login = (email, password) => {
@@ -123,6 +142,8 @@ export function CoffeeProvider({ children }) {
       value={{
         favorites,
         cart,
+        orders,
+        addOrder,
         user,
         login,
         logout,
