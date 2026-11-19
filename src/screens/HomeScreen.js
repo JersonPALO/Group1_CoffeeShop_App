@@ -30,6 +30,13 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       {/* Top Navigation Buttons */}
+      <TouchableOpacity
+        style={[styles.btn, { width: '100%', marginBottom: 15 }]}
+        onPress={() => navigation.navigate('Profile')}
+      >
+        <Text style={styles.btnText}>My Profile</Text>
+      </TouchableOpacity>
+
       <View style={styles.row}>
         <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Favorites')}>
           <Text style={styles.btnText}>Favorites ({favorites.length})</Text>
@@ -39,13 +46,6 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.btnText}>View Cart</Text>
         </TouchableOpacity>
       </View>
-
-      <TouchableOpacity
-        style={[styles.btn, { width: '100%', marginBottom: 15 }]}
-        onPress={() => navigation.navigate('Profile')}
-      >
-        <Text style={styles.btnText}>My Profile</Text>
-      </TouchableOpacity>
 
       {/* Menu List */}
       <FlatList
