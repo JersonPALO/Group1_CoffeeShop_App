@@ -1,8 +1,12 @@
+import { useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
+import { CoffeeContext } from '../context/CoffeeContext';
 import { COFFEE_DATA } from '../data/coffeeData';
 import { styles } from '../styles/GlobalStyles';
 
-export default function HomeScreen({ navigation, favorites, toggleFav }) {
+export default function HomeScreen({ navigation }) {
+  const { favorites, toggleFav } = useContext(CoffeeContext);
+
   return (
     <View style={styles.container}>
       {/* Top Navigation Buttons */}
