@@ -1,11 +1,25 @@
 import { useContext } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { CoffeeContext } from '../context/CoffeeContext';
 import { styles } from '../styles/GlobalStyles';
 
-export default function CartScreen() {
-  const { cart, removeFromCart, clearCart } = useContext(CoffeeContext);
+export default function CartScreen({ navigation }) {
+  const { cart, user, removeFromCart, clearCart } = useContext(CoffeeContext);
   const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+  // Build the order, empty the cart, then show the receipt
+  const handleCheckout = () => {
+    const order = {
+      orderNumber: Date.now().toString().slice(-6),
+      date: new Date().toLocaleString(),
+      customer: user.name,
+      items: cart,
+      total: total,
+    };
+
+    clearCart();
+    navigation.navigate('Receipt', { order });
+  };
 
   if (cart.length === 0) {
     return (
@@ -44,13 +58,7 @@ export default function CartScreen() {
         )}
       />
       <Text style={styles.total}>Total: ₱{total.toFixed(2)}</Text>
-      <TouchableOpacity style={styles.cartbtn} onPress={() => { 
-        Alert.alert(
-          "Order Successful",
-      `Thank you for your order!`
-        ); 
-        clearCart(); 
-        }}>
+      <TouchableOpacity style={styles.cartbtn} onPress={handleCheckout}>
         <Text style={{ color: '#fff', fontWeight: 'bold' }}>Checkout</Text>
       </TouchableOpacity>
     </View>
