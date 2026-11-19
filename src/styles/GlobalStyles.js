@@ -153,3 +153,142 @@ export const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
+
+// ---- MCO2: Login and Profile styles ----
+export const authStyles = StyleSheet.create({
+  loginContainer: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 25,
+    backgroundColor: "#F8F4E3",
+  },
+
+  loginTitle: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#3E2723",
+    textAlign: "center",
+    marginBottom: 5,
+  },
+
+  loginSubtitle: {
+    textAlign: "center",
+    color: "gray",
+    marginBottom: 25,
+  },
+
+  input: {
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "#837b7b",
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 12,
+  },
+
+  errorText: {
+    color: "#E53935",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+
+  demoHint: {
+    marginTop: 20,
+    padding: 12,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 8,
+  },
+
+  profileCard: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 12,
+    padding: 20,
+    marginBottom: 20,
+    elevation: 3,
+  },
+
+  profileName: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#3E2723",
+  },
+
+  profileRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 12,
+  },
+
+  profileLabel: {
+    color: "gray",
+  },
+
+  loginBtn: {
+    backgroundColor: "#6F4E37",
+    padding: 15,
+    borderRadius: 5,
+    alignItems: "center",
+  },
+
+  logoutBtn: {
+    backgroundColor: "#E53935",
+    padding: 15,
+    borderRadius: 5,
+    alignItems: "center",
+  },
+});
+
+// ---- MCO2: Receipt styles ----
+export const receiptStyles = StyleSheet.create({
+  receiptCard: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 12,
+    padding: 20,
+    elevation: 3,
+  },
+
+  shopName: {
+    fontSize: 22,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#3E2723",
+  },
+
+  thanks: {
+    textAlign: "center",
+    color: "gray",
+    marginBottom: 10,
+  },
+
+  divider: {
+    borderBottomWidth: 1,
+    borderStyle: "dashed",
+    borderColor: "#837b7b",
+    marginVertical: 12,
+  },
+
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 6,
+  },
+
+  itemName: {
+    fontWeight: "bold",
+  },
+
+  itemDetail: {
+    color: "gray",
+    fontSize: 12,
+  },
+
+  totalRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+
+  totalText: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+});
