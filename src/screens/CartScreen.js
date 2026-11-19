@@ -4,7 +4,7 @@ import { CoffeeContext } from '../context/CoffeeContext';
 import { styles } from '../styles/GlobalStyles';
 
 export default function CartScreen({ navigation }) {
-  const { cart, user, removeFromCart, clearCart } = useContext(CoffeeContext);
+  const { cart, user, removeFromCart, clearCart, addOrder } = useContext(CoffeeContext);
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   // Build the order, empty the cart, then show the receipt
@@ -17,6 +17,7 @@ export default function CartScreen({ navigation }) {
       total: total,
     };
 
+    addOrder(order); // save to order history
     clearCart();
     navigation.navigate('Receipt', { order });
   };
