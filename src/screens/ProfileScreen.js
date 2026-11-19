@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { CoffeeContext } from '../context/CoffeeContext';
 import { styles, authStyles } from '../styles/GlobalStyles';
 
-export default function ProfileScreen() {
-  const { user, favorites, cart, logout } = useContext(CoffeeContext);
+export default function ProfileScreen({ navigation }) {
+  const { user, favorites, cart, orders, logout } = useContext(CoffeeContext);
 
   return (
     <View style={styles.container}>
@@ -22,6 +22,29 @@ export default function ProfileScreen() {
           <Text>{cart.length}</Text>
         </View>
       </View>
+
+      <Text style={authStyles.sectionTitle}>Order History ({orders.length})</Text>
+
+      <FlatList
+        data={orders}
+        keyExtractor={(order) => order.orderNumber}
+        ListEmptyComponent={
+          <Text style={styles.emptyText}>No orders yet. Check out your cart to place one.</Text>
+        }
+        renderItem={({ item: order }) => (
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => navigation.navigate('Receipt', { order })}
+          >
+            <View>
+              <Text style={styles.title}>Order #{order.orderNumber}</Text>
+              <Text style={authStyles.profileLabel}>{order.date}</Text>
+              <Text>{order.items.length} item(s)</Text>
+            </View>
+            <Text style={{ fontWeight: 'bold' }}>₱{order.total.toFixed(2)}</Text>
+          </TouchableOpacity>
+        )}
+      />
 
       <TouchableOpacity style={authStyles.logoutBtn} onPress={logout}>
         <Text style={{ color: '#fff', fontWeight: 'bold' }}>Log Out</Text>
