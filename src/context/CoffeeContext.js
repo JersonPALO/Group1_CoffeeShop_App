@@ -12,7 +12,8 @@ const CART_KEY = 'cart';
 const USER_KEY = 'user';
 const ORDERS_KEY = 'orders';
 // The menu lives in menu.json inside our own GitHub repo.
-const MENU_API = 'https://github.com/JersonPALO/Group1_CoffeeShop_App/main/menu.json';
+// Replace YOUR-USERNAME and YOUR-REPO with the real ones.
+const MENU_API = 'https://raw.githubusercontent.com/JersonPalo/Group1_CoffeeShop_App/main/menu.json';
 
 export function CoffeeProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
