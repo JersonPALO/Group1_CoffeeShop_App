@@ -29,24 +29,6 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* Top Navigation Buttons */}
-      <View style={styles.row}>
-        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Favorites')}>
-          <Text style={styles.btnText}>Favorites ({favorites.length})</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity style={[styles.btn, { backgroundColor: 'green' }]} onPress={() => navigation.navigate('Cart')}>
-          <Text style={styles.btnText}>View Cart</Text>
-        </TouchableOpacity>
-      </View>
-
-      <TouchableOpacity
-        style={[styles.btn, { width: '100%', marginBottom: 15 }]}
-        onPress={() => navigation.navigate('Profile')}
-      >
-        <Text style={styles.btnText}>My Profile</Text>
-      </TouchableOpacity>
-
       {/* Shown when the API failed and we are using the offline menu */}
       {menuError && (
         <View style={styles.card}>
