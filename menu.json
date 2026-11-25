@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Espresso",
+    "price": 30,
+    "desc": "Rich single shot.",
+    "image": "espresso"
+  },
+  {
+    "id": "2",
+    "name": "Iced Latte",
+    "price": 40,
+    "desc": "Espresso with cold milk.",
+    "image": "icedlatte"
+  },
+  {
+    "id": "3",
+    "name": "Caramel Macchiato",
+    "price": 50,
+    "desc": "Espresso with caramel.",
+    "image": "caramelmacchiato"
+  }
+]
