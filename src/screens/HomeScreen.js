@@ -1,14 +1,14 @@
 import { useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { CoffeeContext } from '../context/CoffeeContext';
-import { COFFEE_DATA } from '../data/coffeeData';
 import { styles } from '../styles/GlobalStyles';
 
 export default function HomeScreen({ navigation }) {
-  const { favorites, toggleFav, isLoading, error } = useContext(CoffeeContext);
+  const { favorites, toggleFav, isLoading, error, menu, menuLoading, menuError, loadMenu } =
+    useContext(CoffeeContext);
 
   // Loading state: show a spinner while saved data is being read
-  if (isLoading) {
+  if (isLoading || menuLoading) {
     return (
       <View style={styles.emptyContainer}>
         <ActivityIndicator size="large" color="#6F4E37" />
@@ -30,13 +30,6 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       {/* Top Navigation Buttons */}
-      <TouchableOpacity
-        style={[styles.btn, { width: '100%', marginBottom: 15 }]}
-        onPress={() => navigation.navigate('Profile')}
-      >
-        <Text style={styles.btnText}>My Profile</Text>
-      </TouchableOpacity>
-
       <View style={styles.row}>
         <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Favorites')}>
           <Text style={styles.btnText}>Favorites ({favorites.length})</Text>
@@ -47,9 +40,26 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
+      <TouchableOpacity
+        style={[styles.btn, { width: '100%', marginBottom: 15 }]}
+        onPress={() => navigation.navigate('Profile')}
+      >
+        <Text style={styles.btnText}>My Profile</Text>
+      </TouchableOpacity>
+
+      {/* Shown when the API failed and we are using the offline menu */}
+      {menuError && (
+        <View style={styles.card}>
+          <Text style={{ flex: 1, marginRight: 10 }}>{menuError}</Text>
+          <TouchableOpacity style={styles.removeButton} onPress={loadMenu}>
+            <Text style={styles.removeText}>Retry</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
       {/* Menu List */}
       <FlatList
-        data={COFFEE_DATA}
+        data={menu}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Details', { item })}>
