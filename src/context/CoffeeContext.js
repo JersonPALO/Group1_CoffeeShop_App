@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DEMO_ACCOUNT } from '../data/demoAccount';
-import { COFFEE_DATA } from '../data/coffeeData';
 import { MENU_IMAGES } from '../data/menuImages';
 
 // Global "teleportation system" for favorites and cart (Lesson 7: Context API)
@@ -13,7 +12,8 @@ const USER_KEY = 'user';
 const ORDERS_KEY = 'orders';
 // The menu lives in menu.json inside our own GitHub repo.
 // Replace YOUR-USERNAME and YOUR-REPO with the real ones.
-const MENU_API = 'https://raw.githubusercontent.com/JersonPalo/Group1_CoffeeShop_App/main/menu.json';
+const MENU_API =
+  'https://raw.githubusercontent.com/JersonPalo/Group1_CoffeeShop_App/main/menu.json';
 
 export function CoffeeProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
@@ -83,8 +83,7 @@ export function CoffeeProvider({ children }) {
       setMenu(items);
     } catch (err) {
       console.log('Failed to fetch menu', err);
-      setMenu(COFFEE_DATA); // fall back to our local menu
-      setMenuError('Could not reach the server. Showing the offline menu.');
+      setMenuError('Could not load the menu. Check your internet connection.');
     } finally {
       setMenuLoading(false);
     }
