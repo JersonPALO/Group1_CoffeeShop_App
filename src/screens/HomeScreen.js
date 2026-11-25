@@ -27,18 +27,21 @@ export default function HomeScreen({ navigation }) {
     );
   }
 
+  // Error state: the menu could not be fetched, let the user try again
+  if (menuError) {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyTitle}>Menu unavailable</Text>
+        <Text style={styles.emptyText}>{menuError}</Text>
+        <TouchableOpacity style={[styles.removeButton, { marginTop: 15 }]} onPress={loadMenu}>
+          <Text style={styles.removeText}>Try Again</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
-      {/* Shown when the API failed and we are using the offline menu */}
-      {menuError && (
-        <View style={styles.card}>
-          <Text style={{ flex: 1, marginRight: 10 }}>{menuError}</Text>
-          <TouchableOpacity style={styles.removeButton} onPress={loadMenu}>
-            <Text style={styles.removeText}>Retry</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-
       {/* Menu List */}
       <FlatList
         data={menu}
