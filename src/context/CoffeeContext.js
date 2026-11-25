@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DEMO_ACCOUNT } from '../data/demoAccount';
+import { COFFEE_DATA } from '../data/coffeeData';
 
 // Global "teleportation system" for favorites and cart (Lesson 7: Context API)
 export const CoffeeContext = createContext();
@@ -9,11 +10,15 @@ const FAVORITES_KEY = 'favorites';
 const CART_KEY = 'cart';
 const USER_KEY = 'user';
 const ORDERS_KEY = 'orders';
+const MENU_API = 'https://api.sampleapis.com/coffee/hot';
 
 export function CoffeeProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
   const [orders, setOrders] = useState([]); // order history
+  const [menu, setMenu] = useState([]); // coffee menu (from the API)
+  const [menuLoading, setMenuLoading] = useState(true);
+  const [menuError, setMenuError] = useState(null);
   const [user, setUser] = useState(null); // null means logged out
   const [isLoading, setIsLoading] = useState(true); // Lesson 7: loading state
   const [error, setError] = useState(null); // Lesson 7: error state
@@ -50,6 +55,45 @@ export function CoffeeProvider({ children }) {
     };
 
     loadData();
+  }, []);
+
+  // Lesson 6: fetch the menu from a REST API using async/await
+  const loadMenu = async () => {
+    setMenuLoading(true);
+    setMenuError(null);
+
+    try {
+      const response = await fetch(MENU_API);
+
+      if (!response.ok) {
+        throw new Error('Server error: ' + response.status);
+      }
+
+      const data = await response.json();
+
+      // Shape the API data like our own coffee items.
+      // The API has no prices, so we give each drink one based on its position.
+      const items = data.slice(0, 8).map((coffee, index) => ({
+        id: 'api-' + coffee.id,
+        name: coffee.title,
+        price: 30 + (index % 5) * 10,
+        desc: coffee.description,
+        image: { uri: coffee.image },
+      }));
+
+      setMenu(items);
+    } catch (err) {
+      console.log('Failed to fetch menu', err);
+      setMenu(COFFEE_DATA); // fall back to our local menu
+      setMenuError('Could not reach the server. Showing the offline menu.');
+    } finally {
+      setMenuLoading(false);
+    }
+  };
+
+  // Lifecycle (mount): fetch the menu once when the app starts
+  useEffect(() => {
+    loadMenu();
   }, []);
 
   // CREATE: add a finished order to the history (newest first) and save it
@@ -142,6 +186,10 @@ export function CoffeeProvider({ children }) {
       value={{
         favorites,
         cart,
+        menu,
+        menuLoading,
+        menuError,
+        loadMenu,
         orders,
         addOrder,
         user,
