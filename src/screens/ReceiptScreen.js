@@ -50,7 +50,7 @@ export default function ReceiptScreen({ route, navigation }) {
 
       <TouchableOpacity
         style={[styles.addBtn, { marginBottom: 30 }]}
-        onPress={() => navigation.navigate('Menu')}
+        onPress={() => navigation.navigate('Main', { screen: 'Menu' })}
       >
         <Text style={{ color: '#fff', fontWeight: 'bold' }}>Back to Menu</Text>
       </TouchableOpacity>
