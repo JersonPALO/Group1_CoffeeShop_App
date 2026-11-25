@@ -1,12 +1,11 @@
 import { useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { CoffeeContext } from '../context/CoffeeContext';
-import { COFFEE_DATA } from '../data/coffeeData';
 import { styles } from '../styles/GlobalStyles';
 
 export default function FavoritesScreen() {
-  const { favorites, toggleFav } = useContext(CoffeeContext);
-  const favItems = COFFEE_DATA.filter((item) => favorites.includes(item.id));
+  const { favorites, toggleFav, menu } = useContext(CoffeeContext);
+  const favItems = menu.filter((item) => favorites.includes(item.id));
 
   if (favItems.length === 0) {
     return (
