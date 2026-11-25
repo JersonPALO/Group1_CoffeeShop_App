@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     flex: 1, 
     padding: 15,
     backgroundColor: "#F8F4E3",
-    paddingBottom: 50,
+    paddingBottom: 10,
   },
 
   row: { 
@@ -24,20 +24,6 @@ export const styles = StyleSheet.create({
   detailRow: { 
     flexDirection: 'row', 
     marginTop: 5 
-  },
-
-  btn: {
-    backgroundColor: "#6F4E37",
-    paddingVertical: 12,
-    borderRadius: 10,
-    width: "48%",
-    alignItems: "center",
-  },
-  
-  btnText: {
-    color: "#FFFFFF",
-    fontWeight: "bold",
-    fontSize: 15,
   },
   
   cartbtn: { 
@@ -272,12 +258,6 @@ export const receiptStyles = StyleSheet.create({
     borderStyle: "dashed",
     borderColor: "#837b7b",
     marginVertical: 12,
-  },
-
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 6,
   },
 
   itemName: {
