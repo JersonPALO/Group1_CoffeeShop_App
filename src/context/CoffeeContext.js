@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DEMO_ACCOUNT } from '../data/demoAccount';
 import { COFFEE_DATA } from '../data/coffeeData';
+import { MENU_IMAGES } from '../data/menuImages';
 
 // Global "teleportation system" for favorites and cart (Lesson 7: Context API)
 export const CoffeeContext = createContext();
@@ -10,7 +11,8 @@ const FAVORITES_KEY = 'favorites';
 const CART_KEY = 'cart';
 const USER_KEY = 'user';
 const ORDERS_KEY = 'orders';
-const MENU_API = 'https://api.sampleapis.com/coffee/hot';
+// The menu lives in menu.json inside our own GitHub repo.
+const MENU_API = 'https://github.com/JersonPALO/Group1_CoffeeShop_App/main/menu.json';
 
 export function CoffeeProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
@@ -71,14 +73,10 @@ export function CoffeeProvider({ children }) {
 
       const data = await response.json();
 
-      // Shape the API data like our own coffee items.
-      // The API has no prices, so we give each drink one based on its position.
-      const items = data.slice(0, 8).map((coffee, index) => ({
-        id: 'api-' + coffee.id,
-        name: coffee.title,
-        price: 30 + (index % 5) * 10,
-        desc: coffee.description,
-        image: { uri: coffee.image },
+      // Turn each image name (like "espresso") into the bundled picture
+      const items = data.map((coffee) => ({
+        ...coffee,
+        image: MENU_IMAGES[coffee.image] || MENU_IMAGES.espresso,
       }));
 
       setMenu(items);
